@@ -194,6 +194,7 @@ function TslSourceStream.ReadSamples(const Buffer: PDouble;
   const Count: SizeUInt): SizeUInt;
 var
   RawLength: SizeUInt;
+  Read: SizeUInt;
 begin
   if FEndOfStream then
     Exit(0);
@@ -201,13 +202,17 @@ begin
   begin
     RawLength := FSampleSize * Count;
     ReAllocMem(FRawBuffer, RawLength);
-    FEndOfStream := FRawStream.Read(FRawBuffer^, RawLength) < RawLength;
-    FTranscoder(FRawBuffer, Buffer, Count);
+    Read := FRawStream.Read(FRawBuffer^, RawLength);
+    FEndOfStream := Read < RawLength;
+    Result := Read div SampleSize;
+    FTranscoder(FRawBuffer, Buffer, Result);
   end
   else
   begin
     RawLength := Count * SizeOf(Double);
-    FEndOfStream := FRawStream.Read(Buffer^, RawLength) < RawLength;
+    Read := FRawStream.Read(Buffer^, RawLength);
+    FEndOfStream := Read < RawLength;
+    Result := Read div SampleSize;
   end;
 end;
 

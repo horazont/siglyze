@@ -41,6 +41,7 @@ type
     FOutputQueue: TOutputQueue;
     FSampleRate: Cardinal;
     FSamplesPerFrame: Cardinal;
+    FWindowFunction: TWindowFunction;
   private
     // working data, no prefixes here
     FFT: fftw_plan;
@@ -74,12 +75,14 @@ begin
   FApproxFPS := FSampleRate / FSamplesPerFrame;
   FInputQueue := TInputQueue.Create;
   FOutputQueue := TOutputQueue.Create;
+  FWindowFunction := ProcessingConfig.WindowFunction;
 end;
 
 destructor TProcessingThread.Destroy;
 begin
   FOutputQueue.Free;
   FInputQueue.Free;
+  FWindowFunction.Free;
   inherited Destroy;
 end;
 
@@ -112,12 +115,24 @@ end;
 
 procedure TProcessingThread.Run(const InData: TInputBlock;
   var OutData: TsiglyzeBlock);
+var
+  I: Integer;
+  Curr: Pcomplex_double;
 begin
   Assert(Length(InData.Samples) = FSamplesPerFrame);
 
   OutData.Samples := InData.Samples;
   Move(OutData.Samples[0], FFTInBuffer[0], FSamplesPerFrame);
+  FWindowFunction.Apply(FFTInBuffer, FSamplesPerFrame);
 
+  fftw_execute(FFT);
+  SetLength(OutData.FFT, FFTOutSize);
+  Curr := FFTOutBuffer;
+  for I := 0 to FFTOutSize - 1 do
+  begin
+    OutData.FFT[I] := Sqrt(Sqr(Curr^.im) + Sqr(Curr^.re));
+    Inc(Curr);
+  end;
 end;
 
 procedure TProcessingThread.Execute;

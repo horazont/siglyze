@@ -63,7 +63,7 @@
       <Unit2>
         <Filename Value="/usr/share/fpcsrc/packages/fcl-base/src/uriparser.pp"/>
         <UnitName Value="URIParser"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="8"/>
         <WindowIndex Value="0"/>
         <TopLine Value="29"/>
         <CursorPos X="62" Y="64"/>
@@ -486,7 +486,7 @@
       <Unit55>
         <Filename Value="../../packages/gametoolset/file/gturi.pas"/>
         <UnitName Value="GTURI"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="6"/>
         <WindowIndex Value="0"/>
         <TopLine Value="126"/>
         <CursorPos X="68" Y="152"/>
@@ -551,7 +551,7 @@
         <Filename Value="modules/siglyze/sources.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Sources"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
         <TopLine Value="85"/>
         <CursorPos X="84" Y="18"/>
@@ -561,7 +561,7 @@
       <Unit64>
         <Filename Value="../../packages/gametoolset/file/gtstreamutils.pas"/>
         <UnitName Value="GTStreamUtils"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="55" Y="20"/>
@@ -571,7 +571,7 @@
       <Unit65>
         <Filename Value="../../packages/stwcore/stwthreadstack.pas"/>
         <UnitName Value="stwThreadStack"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
         <TopLine Value="14"/>
         <CursorPos X="62" Y="28"/>
@@ -589,7 +589,7 @@
       <Unit67>
         <Filename Value="../../packages/stwcore/stwthreadqueue.pas"/>
         <UnitName Value="stwThreadQueue"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="7"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
@@ -600,10 +600,11 @@
         <Filename Value="modules/siglyze/processing.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Processing"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="36" Y="25"/>
+        <TopLine Value="107"/>
+        <CursorPos X="58" Y="133"/>
         <UsageCount Value="21"/>
         <Loaded Value="True"/>
       </Unit68>
@@ -643,18 +644,15 @@
         <Filename Value="modules/fftw/fftw.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="fftw"/>
-        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
         <TopLine Value="78"/>
         <CursorPos X="81" Y="62"/>
         <UsageCount Value="21"/>
-        <Loaded Value="True"/>
       </Unit73>
       <Unit74>
         <Filename Value="modules/siglyze/windowfunctions.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="WindowFunctions"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
@@ -666,123 +664,123 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="modules/siglyze/sources.pas"/>
-        <Caret Line="56" Column="40" TopLine="15"/>
+        <Caret Line="58" Column="43" TopLine="29"/>
       </Position1>
       <Position2>
         <Filename Value="modules/siglyze/sources.pas"/>
-        <Caret Line="58" Column="43" TopLine="29"/>
+        <Caret Line="49" Column="23" TopLine="23"/>
       </Position2>
       <Position3>
-        <Filename Value="modules/siglyze/sources.pas"/>
-        <Caret Line="49" Column="23" TopLine="23"/>
+        <Filename Value="modules/siglyze/processing.pas"/>
+        <Caret Line="14" Column="29" TopLine="1"/>
       </Position3>
       <Position4>
         <Filename Value="modules/siglyze/processing.pas"/>
-        <Caret Line="14" Column="29" TopLine="1"/>
+        <Caret Line="23" Column="26" TopLine="1"/>
       </Position4>
       <Position5>
         <Filename Value="modules/siglyze/processing.pas"/>
-        <Caret Line="23" Column="26" TopLine="1"/>
+        <Caret Line="13" Column="12" TopLine="1"/>
       </Position5>
       <Position6>
         <Filename Value="modules/siglyze/processing.pas"/>
-        <Caret Line="13" Column="12" TopLine="1"/>
+        <Caret Line="37" Column="33" TopLine="1"/>
       </Position6>
       <Position7>
         <Filename Value="modules/siglyze/processing.pas"/>
-        <Caret Line="37" Column="33" TopLine="1"/>
+        <Caret Line="60" Column="18" TopLine="19"/>
       </Position7>
       <Position8>
         <Filename Value="modules/siglyze/processing.pas"/>
-        <Caret Line="60" Column="18" TopLine="19"/>
+        <Caret Line="38" Column="34" TopLine="22"/>
       </Position8>
       <Position9>
         <Filename Value="modules/siglyze/processing.pas"/>
-        <Caret Line="38" Column="34" TopLine="22"/>
+        <Caret Line="33" Column="11" TopLine="1"/>
       </Position9>
       <Position10>
         <Filename Value="modules/siglyze/processing.pas"/>
-        <Caret Line="33" Column="11" TopLine="1"/>
+        <Caret Line="8" Column="42" TopLine="1"/>
       </Position10>
       <Position11>
         <Filename Value="modules/siglyze/processing.pas"/>
-        <Caret Line="8" Column="42" TopLine="1"/>
+        <Caret Line="50" Column="24" TopLine="21"/>
       </Position11>
       <Position12>
         <Filename Value="modules/siglyze/processing.pas"/>
-        <Caret Line="50" Column="24" TopLine="21"/>
+        <Caret Line="8" Column="41" TopLine="1"/>
       </Position12>
       <Position13>
         <Filename Value="modules/siglyze/processing.pas"/>
-        <Caret Line="8" Column="41" TopLine="1"/>
+        <Caret Line="49" Column="26" TopLine="27"/>
       </Position13>
       <Position14>
         <Filename Value="modules/siglyze/processing.pas"/>
-        <Caret Line="49" Column="26" TopLine="27"/>
+        <Caret Line="116" Column="16" TopLine="83"/>
       </Position14>
       <Position15>
         <Filename Value="modules/siglyze/processing.pas"/>
-        <Caret Line="55" Column="49" TopLine="77"/>
+        <Caret Line="29" Column="46" TopLine="3"/>
       </Position15>
       <Position16>
         <Filename Value="modules/siglyze/processing.pas"/>
-        <Caret Line="116" Column="16" TopLine="83"/>
+        <Caret Line="28" Column="14" TopLine="14"/>
       </Position16>
       <Position17>
         <Filename Value="modules/siglyze/processing.pas"/>
-        <Caret Line="29" Column="46" TopLine="3"/>
+        <Caret Line="71" Column="49" TopLine="45"/>
       </Position17>
       <Position18>
         <Filename Value="modules/siglyze/processing.pas"/>
-        <Caret Line="28" Column="14" TopLine="14"/>
+        <Caret Line="55" Column="15" TopLine="29"/>
       </Position18>
       <Position19>
         <Filename Value="modules/siglyze/processing.pas"/>
-        <Caret Line="71" Column="49" TopLine="45"/>
+        <Caret Line="8" Column="35" TopLine="1"/>
       </Position19>
       <Position20>
         <Filename Value="modules/siglyze/processing.pas"/>
-        <Caret Line="55" Column="15" TopLine="29"/>
+        <Caret Line="55" Column="27" TopLine="29"/>
       </Position20>
       <Position21>
-        <Filename Value="modules/siglyze/processing.pas"/>
-        <Caret Line="8" Column="35" TopLine="1"/>
-      </Position21>
-      <Position22>
-        <Filename Value="modules/siglyze/processing.pas"/>
-        <Caret Line="55" Column="27" TopLine="29"/>
-      </Position22>
-      <Position23>
         <Filename Value="modules/siglyze/windowfunctions.pas"/>
         <Caret Line="20" Column="66" TopLine="1"/>
+      </Position21>
+      <Position22>
+        <Filename Value="modules/siglyze/windowfunctions.pas"/>
+        <Caret Line="33" Column="65" TopLine="1"/>
+      </Position22>
+      <Position23>
+        <Filename Value="modules/siglyze/processing.pas"/>
+        <Caret Line="25" Column="37" TopLine="1"/>
       </Position23>
       <Position24>
         <Filename Value="modules/siglyze/windowfunctions.pas"/>
-        <Caret Line="33" Column="65" TopLine="1"/>
+        <Caret Line="8" Column="27" TopLine="1"/>
       </Position24>
       <Position25>
-        <Filename Value="modules/siglyze/processing.pas"/>
-        <Caret Line="25" Column="37" TopLine="1"/>
+        <Filename Value="modules/siglyze/windowfunctions.pas"/>
+        <Caret Line="16" Column="30" TopLine="1"/>
       </Position25>
       <Position26>
-        <Filename Value="modules/siglyze/windowfunctions.pas"/>
-        <Caret Line="8" Column="27" TopLine="1"/>
+        <Filename Value="modules/siglyze/processing.pas"/>
+        <Caret Line="8" Column="59" TopLine="1"/>
       </Position26>
       <Position27>
         <Filename Value="modules/siglyze/windowfunctions.pas"/>
-        <Caret Line="16" Column="30" TopLine="1"/>
+        <Caret Line="21" Column="67" TopLine="2"/>
       </Position27>
       <Position28>
-        <Filename Value="modules/siglyze/processing.pas"/>
-        <Caret Line="8" Column="59" TopLine="1"/>
-      </Position28>
-      <Position29>
-        <Filename Value="modules/siglyze/windowfunctions.pas"/>
-        <Caret Line="21" Column="67" TopLine="2"/>
-      </Position29>
-      <Position30>
         <Filename Value="modules/siglyze/windowfunctions.pas"/>
         <Caret Line="15" Column="28" TopLine="2"/>
+      </Position28>
+      <Position29>
+        <Filename Value="modules/siglyze/processing.pas"/>
+        <Caret Line="134" Column="13" TopLine="103"/>
+      </Position29>
+      <Position30>
+        <Filename Value="modules/siglyze/processing.pas"/>
+        <Caret Line="126" Column="54" TopLine="100"/>
       </Position30>
     </JumpHistory>
   </ProjectOptions>
