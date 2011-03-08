@@ -1,0 +1,805 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="9"/>
+    <General>
+      <Flags>
+        <MainUnitHasCreateFormStatements Value="False"/>
+      </Flags>
+      <MainUnit Value="0"/>
+      <ResourceType Value="res"/>
+      <UseXPManifest Value="True"/>
+      <Icon Value="0"/>
+      <ActiveWindowIndexAtStart Value="0"/>
+    </General>
+    <i18n>
+      <EnableI18N LFM="False"/>
+    </i18n>
+    <VersionInfo>
+      <StringTable ProductVersion=""/>
+    </VersionInfo>
+    <BuildModes Count="1" Active="Default">
+      <Item1 Name="Default" Default="True"/>
+    </BuildModes>
+    <PublishOptions>
+      <Version Value="2"/>
+      <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
+      <ExcludeFileFilter Value="*.(bak|ppu|o|so);*~;backup"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+        <LaunchingApplication PathPlusParams="/usr/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
+      </local>
+    </RunParams>
+    <RequiredPackages Count="2">
+      <Item1>
+        <PackageName Value="stwcore"/>
+      </Item1>
+      <Item2>
+        <PackageName Value="gametoolsetpkg"/>
+      </Item2>
+    </RequiredPackages>
+    <Units Count="74">
+      <Unit0>
+        <Filename Value="siglyze.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="siglyze"/>
+        <EditorIndex Value="0"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="39" Y="11"/>
+        <UsageCount Value="28"/>
+        <Loaded Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="/usr/share/fpcsrc/packages/fcl-base/src/custapp.pp"/>
+        <UnitName Value="CustApp"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="377"/>
+        <CursorPos X="52" Y="394"/>
+        <UsageCount Value="9"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="/usr/share/fpcsrc/packages/fcl-base/src/uriparser.pp"/>
+        <UnitName Value="URIParser"/>
+        <EditorIndex Value="8"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="29"/>
+        <CursorPos X="62" Y="64"/>
+        <UsageCount Value="12"/>
+        <Loaded Value="True"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="modules/io/ioconfig.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ioConfig"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="69" Y="36"/>
+        <UsageCount Value="28"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="modules/io/ioprotocols.pas"/>
+        <UnitName Value="ioProtocols"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="49" Y="15"/>
+        <UsageCount Value="21"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="/usr/share/fpcsrc/packages/fcl-base/src/contnrs.pp"/>
+        <UnitName Value="contnrs"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="575"/>
+        <CursorPos X="19" Y="588"/>
+        <UsageCount Value="9"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="modules/io/iostreams.pas"/>
+        <UnitName Value="ioStreams"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="69" Y="12"/>
+        <UsageCount Value="21"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="modules/io/protocols/ioprotocolfd.pas"/>
+        <UnitName Value="ioProtocolsFD"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="44" Y="8"/>
+        <UsageCount Value="20"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="../../packages/gametoolset/gtfilebase.pas"/>
+        <UnitName Value="GTFileBase"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="59" Y="29"/>
+        <UsageCount Value="9"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="../../packages/gametoolset/gtvfs.pas"/>
+        <UnitName Value="GTVFS"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="9"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="../../packages/gametoolset/gtfileutils.pas"/>
+        <UnitName Value="GTFileUtils"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="29"/>
+        <CursorPos X="101" Y="42"/>
+        <UsageCount Value="9"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="../../packages/gametoolset/gturi.pas"/>
+        <UnitName Value="GTURI"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="127"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="9"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="../../packages/gametoolset/protocols/gtprotocolfd.pas"/>
+        <UnitName Value="GTProtocolFD"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="13"/>
+        <CursorPos X="33" Y="64"/>
+        <UsageCount Value="9"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="/usr/share/fpcsrc/rtl/inc/systemh.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="293"/>
+        <CursorPos X="31" Y="319"/>
+        <UsageCount Value="10"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="/usr/share/fpcsrc/rtl/objpas/classes/classesh.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="753"/>
+        <CursorPos X="14" Y="779"/>
+        <UsageCount Value="10"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="../../packages/gametoolset/protocols/gtprotocolfile.pas"/>
+        <UnitName Value="GTProtocolFile"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="118" Y="29"/>
+        <UsageCount Value="9"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="../../packages/gametoolset/gtstuff.pas"/>
+        <UnitName Value="GTStuff"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="35" Y="54"/>
+        <UsageCount Value="9"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="../../packages/gametoolset/gtxdg.pas"/>
+        <UnitName Value="GTXDG"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="9"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="../../packages/gametoolset/gtbase.pas"/>
+        <UnitName Value="GTBase"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="9"/>
+      </Unit18>
+      <Unit19>
+        <Filename Value="../../packages/gametoolset/gtsession.pas"/>
+        <UnitName Value="GTSession"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="27" Y="18"/>
+        <UsageCount Value="9"/>
+      </Unit19>
+      <Unit20>
+        <Filename Value="../../packages/gametoolset/gtrttitable.pas"/>
+        <UnitName Value="GTRTTITable"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="76" Y="19"/>
+        <UsageCount Value="9"/>
+      </Unit20>
+      <Unit21>
+        <Filename Value="../../packages/gametoolset/gtfiletree.pas"/>
+        <UnitName Value="GTFileTree"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="3" Y="9"/>
+        <UsageCount Value="9"/>
+      </Unit21>
+      <Unit22>
+        <Filename Value="../../packages/gametoolset/gtpropertyeditor.pas"/>
+        <UnitName Value="GTPropertyEditor"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="183"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="9"/>
+      </Unit22>
+      <Unit23>
+        <Filename Value="../../packages/gametoolset/lcl/gtlcl.pas"/>
+        <UnitName Value="gtlcl"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="57" Y="23"/>
+        <UsageCount Value="9"/>
+      </Unit23>
+      <Unit24>
+        <Filename Value="../../packages/gametoolset/lcl/gteditor.pas"/>
+        <UnitName Value="GTEditor"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="78" Y="13"/>
+        <UsageCount Value="9"/>
+      </Unit24>
+      <Unit25>
+        <Filename Value="../../packages/gametoolset/core/gtbase.pas"/>
+        <UnitName Value="GTBase"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="151"/>
+        <CursorPos X="76" Y="179"/>
+        <UsageCount Value="9"/>
+      </Unit25>
+      <Unit26>
+        <Filename Value="../../packages/gametoolset/core/gtconfig.pas"/>
+        <UnitName Value="GTConfig"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="44" Y="8"/>
+        <UsageCount Value="9"/>
+      </Unit26>
+      <Unit27>
+        <Filename Value="/usr/lib64/lazarus/lcl/fileutil.pas"/>
+        <UnitName Value="FileUtil"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="76" Y="12"/>
+        <UsageCount Value="9"/>
+      </Unit27>
+      <Unit28>
+        <Filename Value="/usr/lib64/lazarus/lcl/include/unixfileutil.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="307"/>
+        <CursorPos X="35" Y="310"/>
+        <UsageCount Value="9"/>
+      </Unit28>
+      <Unit29>
+        <Filename Value="/usr/lib64/lazarus/lcl/include/fileutil.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="10" Y="39"/>
+        <UsageCount Value="9"/>
+      </Unit29>
+      <Unit30>
+        <Filename Value="../../packages/gametoolset/core/gtxdg.pas"/>
+        <UnitName Value="GTXDG"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="32" Y="19"/>
+        <UsageCount Value="9"/>
+      </Unit30>
+      <Unit31>
+        <Filename Value="../../packages/gametoolset/core/gtsession.pas"/>
+        <UnitName Value="GTSession"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="9"/>
+      </Unit31>
+      <Unit32>
+        <Filename Value="../../packages/gametoolset/core/gtfilebase.pas"/>
+        <UnitName Value="GTFileBase"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="9"/>
+      </Unit32>
+      <Unit33>
+        <Filename Value="../../packages/gametoolset/core/gtstuff.pas"/>
+        <UnitName Value="GTStuff"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="9"/>
+      </Unit33>
+      <Unit34>
+        <Filename Value="../../packages/gametoolset/core/gttemplate.pas"/>
+        <UnitName Value="GTTemplate"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="73" Y="12"/>
+        <UsageCount Value="9"/>
+      </Unit34>
+      <Unit35>
+        <Filename Value="../../packages/gametoolset/core/gttemplatemanager.pas"/>
+        <UnitName Value="GTTemplateManager"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="9"/>
+      </Unit35>
+      <Unit36>
+        <Filename Value="../../packages/gametoolset/file/gtfilebase.pas"/>
+        <UnitName Value="GTFileBase"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="9"/>
+      </Unit36>
+      <Unit37>
+        <Filename Value="../../packages/gametoolset/core/gtcore.pas"/>
+        <UnitName Value="gtcore"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="9"/>
+      </Unit37>
+      <Unit38>
+        <Filename Value="../../packages/gametoolset/file/gtsession.pas"/>
+        <UnitName Value="GTSession"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="9"/>
+      </Unit38>
+      <Unit39>
+        <Filename Value="../../packages/gametoolset/lcl/gtpropertyeditor.pas"/>
+        <UnitName Value="GTPropertyEditor"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="25" Y="8"/>
+        <UsageCount Value="10"/>
+      </Unit39>
+      <Unit40>
+        <Filename Value="../../packages/gametoolset/lcl/gtpropertygrid.pas"/>
+        <UnitName Value="GTPropertyGrid"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="9"/>
+      </Unit40>
+      <Unit41>
+        <Filename Value="../../packages/gametoolset/core/gtregistry.pas"/>
+        <UnitName Value="GTRegistry"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="65" Y="27"/>
+        <UsageCount Value="9"/>
+      </Unit41>
+      <Unit42>
+        <Filename Value="/usr/lib64/lazarus/ide/lazarus.pp"/>
+        <UnitName Value="Lazarus"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="75"/>
+        <CursorPos X="78" Y="95"/>
+        <UsageCount Value="10"/>
+      </Unit42>
+      <Unit43>
+        <Filename Value="../../packages/x3toolset/x3universetree.pas"/>
+        <UnitName Value="X3UniverseTree"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="113"/>
+        <CursorPos X="68" Y="129"/>
+        <UsageCount Value="10"/>
+      </Unit43>
+      <Unit44>
+        <Filename Value="../../packages/gametoolset/net/protocols/gtprotocoltcp.pas"/>
+        <UnitName Value="GTProtocolTCP"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="3"/>
+        <CursorPos X="38" Y="54"/>
+        <UsageCount Value="10"/>
+      </Unit44>
+      <Unit45>
+        <Filename Value="../../packages/synapse/blcksock.pas"/>
+        <UnitName Value="blcksock"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="995"/>
+        <CursorPos X="17" Y="923"/>
+        <UsageCount Value="10"/>
+      </Unit45>
+      <Unit46>
+        <Filename Value="../../packages/synapse/ssfpc.pas"/>
+        <UnitName Value="ssfpc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="68"/>
+        <CursorPos X="3" Y="94"/>
+        <UsageCount Value="9"/>
+      </Unit46>
+      <Unit47>
+        <Filename Value="../../packages/gametoolset/net/gtsynapsestreamwrapper.pas"/>
+        <UnitName Value="GTSynapseStreamWrapper"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="23"/>
+        <CursorPos X="12" Y="66"/>
+        <UsageCount Value="11"/>
+      </Unit47>
+      <Unit48>
+        <Filename Value="../../packages/gametoolset/net/gtnet.pas"/>
+        <UnitName Value="gtnet"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="87" Y="13"/>
+        <UsageCount Value="10"/>
+      </Unit48>
+      <Unit49>
+        <Filename Value="../../packages/synapse/synsock.pas"/>
+        <UnitName Value="synsock"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="16"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="9"/>
+      </Unit49>
+      <Unit50>
+        <Filename Value="../../packages/gametoolset/file/protocols/gtprotocolfile.pas"/>
+        <UnitName Value="GTProtocolFile"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="43"/>
+        <CursorPos X="3" Y="46"/>
+        <UsageCount Value="10"/>
+      </Unit50>
+      <Unit51>
+        <Filename Value="../../packages/synapse/ssl_openssl.pas"/>
+        <UnitName Value="ssl_openssl"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="57"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="9"/>
+      </Unit51>
+      <Unit52>
+        <Filename Value="../../packages/gametoolset/net/protocols/gtprotocoltcpssl.pas"/>
+        <UnitName Value="GTProtocolTCPSSL"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="41" Y="48"/>
+        <UsageCount Value="10"/>
+      </Unit52>
+      <Unit53>
+        <Filename Value="../../packages/gametoolset/file/protocols/gtprotocolfd.pas"/>
+        <UnitName Value="GTProtocolFD"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="21" Y="64"/>
+        <UsageCount Value="10"/>
+      </Unit53>
+      <Unit54>
+        <Filename Value="../../packages/gametoolset/file/gturiautoregister.pas"/>
+        <UnitName Value="GTURIAutoRegister"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="30" Y="13"/>
+        <UsageCount Value="10"/>
+      </Unit54>
+      <Unit55>
+        <Filename Value="../../packages/gametoolset/file/gturi.pas"/>
+        <UnitName Value="GTURI"/>
+        <EditorIndex Value="6"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="126"/>
+        <CursorPos X="68" Y="152"/>
+        <UsageCount Value="12"/>
+        <Loaded Value="True"/>
+      </Unit55>
+      <Unit56>
+        <Filename Value="../../packages/gametoolset/net/protocols/gtprotocolunixsock.pas"/>
+        <UnitName Value="GTProtocolUnixSock"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="43" Y="57"/>
+        <UsageCount Value="10"/>
+      </Unit56>
+      <Unit57>
+        <Filename Value="../../packages/gametoolset/net/gtunixsockstream.pas"/>
+        <UnitName Value="GTUnixSockStream"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="9" Y="154"/>
+        <UsageCount Value="10"/>
+      </Unit57>
+      <Unit58>
+        <Filename Value="/usr/share/fpcsrc/packages/fcl-net/src/fpsock.pp"/>
+        <UnitName Value="fpSock"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="365"/>
+        <CursorPos X="31" Y="375"/>
+        <UsageCount Value="10"/>
+      </Unit58>
+      <Unit59>
+        <Filename Value="/usr/share/fpcsrc/rtl/inc/socketsh.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="147"/>
+        <CursorPos X="11" Y="173"/>
+        <UsageCount Value="10"/>
+      </Unit59>
+      <Unit60>
+        <Filename Value="/usr/share/fpcsrc/rtl/unix/sockets.pp"/>
+        <UnitName Value="Sockets"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="23"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="10"/>
+      </Unit60>
+      <Unit61>
+        <Filename Value="/usr/share/fpcsrc/packages/fcl-async/src/fpasync.pp"/>
+        <UnitName Value="fpAsync"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="10"/>
+      </Unit61>
+      <Unit62>
+        <Filename Value="/usr/share/fpcsrc/rtl/objpas/classes/streams.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="74"/>
+        <CursorPos X="74" Y="95"/>
+        <UsageCount Value="10"/>
+      </Unit62>
+      <Unit63>
+        <Filename Value="modules/siglyze/sources.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Sources"/>
+        <EditorIndex Value="3"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="85"/>
+        <CursorPos X="84" Y="18"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
+      </Unit63>
+      <Unit64>
+        <Filename Value="../../packages/gametoolset/file/gtstreamutils.pas"/>
+        <UnitName Value="GTStreamUtils"/>
+        <EditorIndex Value="5"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="55" Y="20"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit64>
+      <Unit65>
+        <Filename Value="../../packages/stwcore/stwthreadstack.pas"/>
+        <UnitName Value="stwThreadStack"/>
+        <EditorIndex Value="4"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="14"/>
+        <CursorPos X="62" Y="28"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit65>
+      <Unit66>
+        <Filename Value="../../packages/stwcore/stwmethodlist.pas"/>
+        <UnitName Value="stwMethodList"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="10"/>
+      </Unit66>
+      <Unit67>
+        <Filename Value="../../packages/stwcore/stwthreadqueue.pas"/>
+        <UnitName Value="stwThreadQueue"/>
+        <EditorIndex Value="7"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit67>
+      <Unit68>
+        <Filename Value="modules/siglyze/processing.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Processing"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="91"/>
+        <CursorPos X="41" Y="137"/>
+        <UsageCount Value="21"/>
+        <Loaded Value="True"/>
+      </Unit68>
+      <Unit69>
+        <Filename Value="../../../lcl/selecttargetplatform/packages/selecttargetplatform.pas"/>
+        <UnitName Value="selectTargetPlatform"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="137"/>
+        <CursorPos X="71" Y="168"/>
+        <UsageCount Value="10"/>
+      </Unit69>
+      <Unit70>
+        <Filename Value="/usr/lib64/lazarus/ideintf/propedits.pp"/>
+        <UnitName Value="PropEdits"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1487"/>
+        <CursorPos X="70" Y="1538"/>
+        <UsageCount Value="10"/>
+      </Unit70>
+      <Unit71>
+        <Filename Value="/usr/lib64/lazarus/lcl/controls.pp"/>
+        <UnitName Value="Controls"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1179"/>
+        <CursorPos X="15" Y="1205"/>
+        <UsageCount Value="10"/>
+      </Unit71>
+      <Unit72>
+        <Filename Value="/usr/share/fpcsrc/packages/fftw/src/fftw_s.pas"/>
+        <UnitName Value="fftw_s"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="71"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="10"/>
+      </Unit72>
+      <Unit73>
+        <Filename Value="modules/fftw/fftw.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="fftw"/>
+        <EditorIndex Value="2"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="78"/>
+        <CursorPos X="81" Y="62"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+      </Unit73>
+    </Units>
+    <JumpHistory Count="30" HistoryIndex="29">
+      <Position1>
+        <Filename Value="modules/siglyze/sources.pas"/>
+        <Caret Line="236" Column="24" TopLine="191"/>
+      </Position1>
+      <Position2>
+        <Filename Value="modules/siglyze/sources.pas"/>
+        <Caret Line="11" Column="89" TopLine="1"/>
+      </Position2>
+      <Position3>
+        <Filename Value="../../packages/gametoolset/file/gtstreamutils.pas"/>
+        <Caret Line="13" Column="38" TopLine="1"/>
+      </Position3>
+      <Position4>
+        <Filename Value="modules/siglyze/sources.pas"/>
+        <Caret Line="241" Column="13" TopLine="192"/>
+      </Position4>
+      <Position5>
+        <Filename Value="modules/siglyze/sources.pas"/>
+        <Caret Line="8" Column="53" TopLine="1"/>
+      </Position5>
+      <Position6>
+        <Filename Value="modules/siglyze/sources.pas"/>
+        <Caret Line="245" Column="24" TopLine="194"/>
+      </Position6>
+      <Position7>
+        <Filename Value="modules/siglyze/sources.pas"/>
+        <Caret Line="246" Column="123" TopLine="197"/>
+      </Position7>
+      <Position8>
+        <Filename Value="modules/siglyze/sources.pas"/>
+        <Caret Line="45" Column="15" TopLine="15"/>
+      </Position8>
+      <Position9>
+        <Filename Value="modules/siglyze/sources.pas"/>
+        <Caret Line="56" Column="40" TopLine="15"/>
+      </Position9>
+      <Position10>
+        <Filename Value="modules/siglyze/sources.pas"/>
+        <Caret Line="58" Column="43" TopLine="29"/>
+      </Position10>
+      <Position11>
+        <Filename Value="modules/siglyze/sources.pas"/>
+        <Caret Line="49" Column="23" TopLine="23"/>
+      </Position11>
+      <Position12>
+        <Filename Value="modules/siglyze/processing.pas"/>
+        <Caret Line="14" Column="29" TopLine="1"/>
+      </Position12>
+      <Position13>
+        <Filename Value="modules/siglyze/processing.pas"/>
+        <Caret Line="23" Column="26" TopLine="1"/>
+      </Position13>
+      <Position14>
+        <Filename Value="modules/siglyze/processing.pas"/>
+        <Caret Line="13" Column="12" TopLine="1"/>
+      </Position14>
+      <Position15>
+        <Filename Value="modules/siglyze/processing.pas"/>
+        <Caret Line="37" Column="33" TopLine="1"/>
+      </Position15>
+      <Position16>
+        <Filename Value="modules/siglyze/processing.pas"/>
+        <Caret Line="60" Column="18" TopLine="19"/>
+      </Position16>
+      <Position17>
+        <Filename Value="modules/siglyze/processing.pas"/>
+        <Caret Line="38" Column="34" TopLine="22"/>
+      </Position17>
+      <Position18>
+        <Filename Value="modules/siglyze/processing.pas"/>
+        <Caret Line="33" Column="11" TopLine="1"/>
+      </Position18>
+      <Position19>
+        <Filename Value="modules/siglyze/processing.pas"/>
+        <Caret Line="8" Column="42" TopLine="1"/>
+      </Position19>
+      <Position20>
+        <Filename Value="modules/siglyze/processing.pas"/>
+        <Caret Line="50" Column="24" TopLine="21"/>
+      </Position20>
+      <Position21>
+        <Filename Value="modules/siglyze/processing.pas"/>
+        <Caret Line="8" Column="41" TopLine="1"/>
+      </Position21>
+      <Position22>
+        <Filename Value="modules/siglyze/processing.pas"/>
+        <Caret Line="49" Column="26" TopLine="27"/>
+      </Position22>
+      <Position23>
+        <Filename Value="modules/siglyze/processing.pas"/>
+        <Caret Line="55" Column="49" TopLine="77"/>
+      </Position23>
+      <Position24>
+        <Filename Value="modules/siglyze/processing.pas"/>
+        <Caret Line="116" Column="16" TopLine="83"/>
+      </Position24>
+      <Position25>
+        <Filename Value="modules/siglyze/processing.pas"/>
+        <Caret Line="29" Column="46" TopLine="3"/>
+      </Position25>
+      <Position26>
+        <Filename Value="modules/siglyze/processing.pas"/>
+        <Caret Line="28" Column="14" TopLine="14"/>
+      </Position26>
+      <Position27>
+        <Filename Value="modules/siglyze/processing.pas"/>
+        <Caret Line="71" Column="49" TopLine="45"/>
+      </Position27>
+      <Position28>
+        <Filename Value="modules/siglyze/processing.pas"/>
+        <Caret Line="55" Column="15" TopLine="29"/>
+      </Position28>
+      <Position29>
+        <Filename Value="modules/siglyze/processing.pas"/>
+        <Caret Line="8" Column="35" TopLine="1"/>
+      </Position29>
+      <Position30>
+        <Filename Value="modules/siglyze/processing.pas"/>
+        <Caret Line="55" Column="27" TopLine="29"/>
+      </Position30>
+    </JumpHistory>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="10"/>
+    <SearchPaths>
+      <IncludeFiles Value="$(ProjOutDir)"/>
+      <OtherUnitFiles Value="modules/io;modules/io/protocols;modules/siglyze;modules/fftw"/>
+      <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
+    </SearchPaths>
+    <Other>
+      <CompilerMessages>
+        <UseMsgFile Value="True"/>
+      </CompilerMessages>
+      <CompilerPath Value="$(CompPath)"/>
+    </Other>
+  </CompilerOptions>
+  <Debugging>
+    <Exceptions Count="3">
+      <Item1>
+        <Name Value="EAbort"/>
+      </Item1>
+      <Item2>
+        <Name Value="ECodetoolError"/>
+      </Item2>
+      <Item3>
+        <Name Value="EFOpenError"/>
+      </Item3>
+    </Exceptions>
+  </Debugging>
+</CONFIG>
