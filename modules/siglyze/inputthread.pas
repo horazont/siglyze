@@ -24,6 +24,7 @@ type
     FTargetQueue: TInputQueue;
   public
     procedure Execute; override;
+    property Terminated;
   end;
 
 implementation
@@ -62,11 +63,16 @@ begin
       begin
         for I := Read to FSamplesPerFrame - 1 do
           Buffer[I] := 0.0;
+        Terminate;
       end;
+//      WriteLn('input thread sent block');
       FTargetQueue.Push(Buffer);
     end;
   except
-
+    on E: Exception do
+    begin
+      WriteLn(StdErr, 'Input thread crashed with: ', E.Message);
+    end;
   end;
 end;
 

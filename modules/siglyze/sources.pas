@@ -231,6 +231,8 @@ begin
   inherited Create(AURI);
   FSampleRate := ASampleRate;
   FRawFormat := ARawFormat;
+  if not (FRawFormat in AllFormats) then
+    raise Exception.Create('Invalid sample format for pcm input.');
 end;
 
 function TslRawSource.CreateStream: TslSourceStream;

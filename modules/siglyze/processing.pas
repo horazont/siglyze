@@ -5,7 +5,7 @@ unit Processing;
 interface
 
 uses
-  Classes, SysUtils, stwThreadQueue, fftw, WindowFunctions, BlockMemoryManager;
+  Classes, SysUtils, stwThreadStack, fftw, WindowFunctions, BlockMemoryManager;
 
 type
   TsiglyzeBlock = record
@@ -15,6 +15,7 @@ type
     FFT: PDouble;
     Max, Average, PeakThreshold, LowLevelCutoff: Double;
   end;
+  PsiglyzeBlock = ^TsiglyzeBlock;
 
   TProcessingConfig = record
     SampleRate: Cardinal;
@@ -22,8 +23,8 @@ type
     WindowFunction: TWindowFunction;
   end;
 
-  TInputQueue = specialize TstwGThreadQueue<PDouble>;
-  TOutputQueue = specialize TstwGThreadQueue<TsiglyzeBlock>;
+  TInputQueue = TstwThreadStack;
+  TOutputQueue = TstwThreadStack;
 
   { TProcessingThread }
 
@@ -61,6 +62,9 @@ type
     property SamplesPerFrame: Cardinal read FSamplesPerFrame;
     property SampleDataMemoryManager: TBlockMemoryManager read FSampleDataMemoryManager;
     property FFTDataMemoryManager: TBlockMemoryManager read FFFTDataMemoryManager;
+    property OutputQueue: TOutputQueue read FOutputQueue;
+    property InputQueue: TInputQueue read FInputQueue;
+    property Terminated;
   end;
 
 implementation
@@ -124,6 +128,7 @@ var
   I: Integer;
   Curr: Pcomplex_double;
 begin
+  OutData.SampleCount := FSamplesPerFrame;
   OutData.Samples := InData;
   Move(OutData.Samples[0], FFTInBuffer[0], FSamplesPerFrame);
   FWindowFunction.Apply(FFTInBuffer, FSamplesPerFrame);
@@ -141,29 +146,34 @@ end;
 procedure TProcessingThread.Execute;
 var
   InputData: PDouble;
-  OutputData: TsiglyzeBlock;
+  OutputData: PsiglyzeBlock;
 begin
   try
     Init;
     try
-      while not Terminated do
+      while (not Terminated) or (not FInputQueue.Empty) do
       begin
-        while not FInputQueue.Decapitate(InputData) do
+        while FInputQueue.Empty do
         begin
           if Terminated then
             Exit;
           Sleep(1);
         end;
-        Run(InputData, OutputData);
+//        WriteLn('processing thread received block');
+        New(OutputData);
+        InputData := PDouble(FInputQueue.Pop);
+        Run(InputData, OutputData^);
         FOutputQueue.Push(OutputData);
+//        WriteLn('processing thread sent block');
       end;
-      while FInputQueue.Decapitate(InputData) do
-        FSampleDataMemoryManager.ReleaseBlock(InputData);
     finally
       Burn;
     end;
   except
-    // todo -- exception handling here
+    on E: Exception do
+    begin
+      WriteLn(stderr, 'Processing thread crashed with ', E.Message);
+    end;
   end;
 end;
 

@@ -5,7 +5,7 @@ unit BlockMemoryManager;
 interface
 
 uses
-  Classes, SysUtils, stwThreadStack, stwCriticalSections;
+  Classes, SysUtils, stwThreadStack{, stwCriticalSections};
 
 type
   TBlockStack = class (TstwCustomThreadStack);
@@ -21,7 +21,7 @@ type
   private
     FBlockSize, FBlocksPerGroup: SizeUInt;
     FFreeBlocks: TBlockStack;
-    FBlockLock: PstwCriticalSection;
+    FBlockLock: TRTLCriticalSection;
     FBlocks: array of TBlockGroup;
     FBlockCapacity, FBlockCount: Integer;
   protected
@@ -41,16 +41,18 @@ begin
   FBlockSize := BlockSize;
   FBlocksPerGroup := BlocksPerGroup;
   FFreeBlocks := TBlockStack.Create;
-  FBlockLock := NewCriticalSection;
+//  FBlockLock := NewCriticalSection;
   FBlockCapacity := 0;
   FBlockCount := 0;
+  InitCriticalSection(FBlockLock);
 end;
 
 destructor TBlockMemoryManager.Destroy;
 var
   I, J: Integer;
 begin
-  DisposeCriticalSection(FBlockLock);
+  DoneCriticalsection(FBlockLock);
+//  DisposeCriticalSection(FBlockLock);
   for I := 0 to High(FBlocks) do
   begin
     if FBlocks[I] <> nil then

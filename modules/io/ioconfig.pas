@@ -24,9 +24,11 @@ type
   public
     constructor Create; override;
   private
+    FDefaultDest: String;
     FDefaultSource: String;
   published
     property DefaultSource: String read FDefaultSource write FDefaultSource;
+    property DefaultDest: String read FDefaultDest write FDefaultDest;
   end;
 
 var
@@ -56,7 +58,8 @@ end;
 constructor TslConfig.Create;
 begin
   inherited Create;
-  FDefaultSource := 'fd://stdin/?samplerate=44100&amp;resolution=s16';
+  FDefaultSource := 'fd://stdin/';
+  FDefaultDest := 'fd://stdout/';
 end;
 
 initialization

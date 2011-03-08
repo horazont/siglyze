@@ -24,6 +24,7 @@ type
     FSampleDataMemoryManager: TBlockMemoryManager;
   public
     procedure Execute; override;
+    property Terminated;
   end;
 
 implementation
@@ -45,28 +46,33 @@ end;
 
 procedure TOutputThread.Execute;
 var
-  Data: TsiglyzeBlock;
+  Data: PsiglyzeBlock;
 begin
   try
     while not Terminated do
     begin
-      while not FSourceQueue.Decapitate(Data) do
+      while FSourceQueue.Empty do
       begin
         if Terminated then Exit;
         Sleep(1);
       end;
-      FOutStream.Write(Data.SampleCount, SizeOf(Cardinal));
-      FOutStream.Write(Data.Max, SizeOf(Double));
-      FOutStream.Write(Data.Average, SizeOf(Double));
-      FOutStream.Write(Data.PeakThreshold, SizeOf(Double));
-      FOutStream.Write(Data.LowLevelCutoff, SizeOf(Double));
-      FOutStream.Write(Data.Samples^, SizeOf(Double)*Data.SampleCount);
-      FOutStream.Write(Data.FFT^, SizeOf(Double)*(Data.SampleCount div 2 + 1));
-      FFFTMemoryManager.ReleaseBlock(Data.FFT);
-      FSampleDataMemoryManager.ReleaseBlock(Data.Samples);
+      Data := PsiglyzeBlock(FSourceQueue.Pop);
+      FOutStream.Write(Data^.SampleCount, SizeOf(Cardinal));
+      FOutStream.Write(Data^.Max, SizeOf(Double));
+      FOutStream.Write(Data^.Average, SizeOf(Double));
+      FOutStream.Write(Data^.PeakThreshold, SizeOf(Double));
+      FOutStream.Write(Data^.LowLevelCutoff, SizeOf(Double));
+      FOutStream.Write(Data^.Samples^, SizeOf(Double)*Data^.SampleCount);
+      FOutStream.Write(Data^.FFT^, SizeOf(Double)*(Data^.SampleCount div 2 + 1));
+      FFFTMemoryManager.ReleaseBlock(Data^.FFT);
+      FSampleDataMemoryManager.ReleaseBlock(Data^.Samples);
+      Dispose(Data);
     end;
   except
-
+    on E: Exception do
+    begin
+      WriteLn(StdErr, 'Output thread crashed with: ', E.Message);
+    end;
   end;
 end;
 
