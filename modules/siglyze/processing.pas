@@ -124,7 +124,7 @@ var
   I: Integer;
   Curr: Pcomplex_double;
 begin
-  OutData.Samples := InData.Samples;
+  OutData.Samples := InData;
   Move(OutData.Samples[0], FFTInBuffer[0], FSamplesPerFrame);
   FWindowFunction.Apply(FFTInBuffer, FSamplesPerFrame);
 
@@ -140,22 +140,28 @@ end;
 
 procedure TProcessingThread.Execute;
 var
-  InputData: TInputBlock;
+  InputData: PDouble;
   OutputData: TsiglyzeBlock;
 begin
   try
     Init;
-    while not Terminated do
-    begin
-      while FInputQueue.Empty do
-        Sleep(1);
-      FInputQueue.Decapitate(InputData);
-      Run(InputData, OutputData);
-      FOutputQueue.Push(OutputData);
+    try
+      while not Terminated do
+      begin
+        while not FInputQueue.Decapitate(InputData) do
+        begin
+          if Terminated then
+            Exit;
+          Sleep(1);
+        end;
+        Run(InputData, OutputData);
+        FOutputQueue.Push(OutputData);
+      end;
+      while FInputQueue.Decapitate(InputData) do
+        FSampleDataMemoryManager.ReleaseBlock(InputData);
+    finally
+      Burn;
     end;
-    while not FInputQueue.Empty do
-      FInputQueue.Decapitate(InputData);
-    Burn;
   except
     // todo -- exception handling here
   end;
