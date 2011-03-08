@@ -8,7 +8,8 @@ uses
   {$ENDIF}{$ENDIF}
   Classes, SysUtils, CustApp, URIParser, ioConfig, GTURIAutoRegister, GTURI,
   GTProtocolFD, GTProtocolFile, GTProtocolTCP, GTProtocolTCPSSL,
-  GTProtocolUnixSock, GTUnixSockStream, Sources, Processing, fftw;
+  GTProtocolUnixSock, GTUnixSockStream, Sources, Processing, fftw,
+WindowFunctions;
 
 type
   EInvalidArgument = class (Exception);

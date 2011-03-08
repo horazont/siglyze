@@ -5,7 +5,7 @@ unit Processing;
 interface
 
 uses
-  Classes, SysUtils, stwThreadQueue, fftw;
+  Classes, SysUtils, stwThreadQueue, fftw, WindowFunctions;
 
 type
   TInputBlock = record
