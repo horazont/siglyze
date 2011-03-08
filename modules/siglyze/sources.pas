@@ -204,7 +204,7 @@ begin
     ReAllocMem(FRawBuffer, RawLength);
     Read := FRawStream.Read(FRawBuffer^, RawLength);
     FEndOfStream := Read < RawLength;
-    Result := Read div SampleSize;
+    Result := Read div FSampleSize;
     FTranscoder(FRawBuffer, Buffer, Result);
   end
   else
@@ -212,7 +212,7 @@ begin
     RawLength := Count * SizeOf(Double);
     Read := FRawStream.Read(Buffer^, RawLength);
     FEndOfStream := Read < RawLength;
-    Result := Read div SampleSize;
+    Result := Read div FSampleSize;
   end;
 end;
 

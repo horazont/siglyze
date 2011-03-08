@@ -5,7 +5,7 @@ unit InputThread;
 interface
 
 uses
-  Classes, SysUtils, Sources;
+  Classes, SysUtils, Sources, BlockMemoryManager, Processing;
 
 type
 
@@ -14,11 +14,14 @@ type
   TInputThread = class (TThread)
   public
     constructor Create(const AInputStream: TslSourceStream; ASamplesPerFrame: Cardinal;
-      ACreateSuspended: Boolean; const StackSize: SizeUInt = DefaultStackSize);
+      AMemoryManager: TBlockMemoryManager; ATargetQueue: TInputQueue; ACreateSuspended: Boolean;
+      const StackSize: SizeUInt = DefaultStackSize);
     destructor Destroy; override;
   private
     FInputStream: TslSourceStream;
+    FMemoryManager: TBlockMemoryManager;
     FSamplesPerFrame: Cardinal;
+    FTargetQueue: TInputQueue;
   public
     procedure Execute; override;
   end;
@@ -28,12 +31,15 @@ implementation
 { TInputThread }
 
 constructor TInputThread.Create(const AInputStream: TslSourceStream;
-  ASamplesPerFrame: Cardinal; ACreateSuspended: Boolean;
+  ASamplesPerFrame: Cardinal; AMemoryManager: TBlockMemoryManager;
+  ATargetQueue: TInputQueue; ACreateSuspended: Boolean;
   const StackSize: SizeUInt);
 begin
   inherited Create(ACreateSuspended, StackSize);
   FSamplesPerFrame := ASamplesPerFrame;
   FInputStream := AInputStream;
+  FMemoryManager := AMemoryManager;
+  FTargetQueue := ATargetQueue;
 end;
 
 destructor TInputThread.Destroy;
@@ -48,19 +54,16 @@ var
   Read, I: SizeUInt;
 begin
   try
-    Buffer := GetMem(SizeOf(Double) * FSamplesPerFrame);
-    try
-      while not Terminated do
+    while not Terminated do
+    begin
+      Buffer := PDouble(FMemoryManager.GetFreeBlock);
+      Read := FInputStream.ReadSamples(Buffer, FSamplesPerFrame);
+      if Read < FSamplesPerFrame then
       begin
-        Read := FInputStream.ReadSamples(Buffer, FSamplesPerFrame);
-        if Read < FSamplesPerFrame then
-        begin
-          for I := Read to FSamplesPerFrame - 1 do
-            Buffer[I] := 0.0;
-        end;
+        for I := Read to FSamplesPerFrame - 1 do
+          Buffer[I] := 0.0;
       end;
-    finally
-      FreeMem(Buffer);
+      FTargetQueue.Push(Buffer);
     end;
   except
 

@@ -9,7 +9,7 @@ uses
   Classes, SysUtils, CustApp, URIParser, ioConfig, GTURIAutoRegister, GTURI,
   GTProtocolFD, GTProtocolFile, GTProtocolTCP, GTProtocolTCPSSL,
   GTProtocolUnixSock, GTUnixSockStream, Sources, Processing, fftw,
-WindowFunctions;
+WindowFunctions, InputThread, BlockMemoryManager;
 
 type
   EInvalidArgument = class (Exception);
