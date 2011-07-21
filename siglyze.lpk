@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <Package Version="4">
+    <Name Value="siglyze"/>
+    <CompilerOptions>
+      <Version Value="10"/>
+      <SearchPaths>
+        <OtherUnitFiles Value="datatypes;fftw;overmind;processors;utils;sources"/>
+        <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)/"/>
+      </SearchPaths>
+      <Other>
+        <CompilerPath Value="$(CompPath)"/>
+      </Other>
+    </CompilerOptions>
+    <Files Count="11">
+      <Item1>
+        <Filename Value="datatypes/datatypefft.pas"/>
+        <UnitName Value="DataTypeFFT"/>
+      </Item1>
+      <Item2>
+        <Filename Value="datatypes/datatypesamples.pas"/>
+        <UnitName Value="DataTypeSamples"/>
+      </Item2>
+      <Item3>
+        <Filename Value="datatypes/datatypestatus.pas"/>
+        <UnitName Value="DataTypeStatus"/>
+      </Item3>
+      <Item4>
+        <Filename Value="fftw/fftw.pas"/>
+        <UnitName Value="fftw"/>
+      </Item4>
+      <Item5>
+        <Filename Value="overmind/processingovermind.pas"/>
+        <UnitName Value="ProcessingOvermind"/>
+      </Item5>
+      <Item6>
+        <Filename Value="processors/fftprocessor.pas"/>
+        <UnitName Value="FFTProcessor"/>
+      </Item6>
+      <Item7>
+        <Filename Value="processors/inputprocessor.pas"/>
+        <UnitName Value="InputProcessor"/>
+      </Item7>
+      <Item8>
+        <Filename Value="processors/mixprocessor.pas"/>
+        <UnitName Value="MixProcessor"/>
+      </Item8>
+      <Item9>
+        <Filename Value="processors/outputprocessor.pas"/>
+        <UnitName Value="OutputProcessor"/>
+      </Item9>
+      <Item10>
+        <Filename Value="utils/windowfunctions.pas"/>
+        <UnitName Value="WindowFunctions"/>
+      </Item10>
+      <Item11>
+        <Filename Value="sources/sources.pas"/>
+        <UnitName Value="Sources"/>
+      </Item11>
+    </Files>
+    <Type Value="RunAndDesignTime"/>
+    <RequiredPkgs Count="3">
+      <Item1>
+        <PackageName Value="gtfile"/>
+        <MinVersion Minor="8" Valid="True"/>
+      </Item1>
+      <Item2>
+        <PackageName Value="gtcore"/>
+        <MinVersion Minor="8" Valid="True"/>
+      </Item2>
+      <Item3>
+        <PackageName Value="FCL"/>
+      </Item3>
+    </RequiredPkgs>
+    <UsageOptions>
+      <UnitPath Value="$(PkgOutDir)"/>
+    </UsageOptions>
+    <PublishOptions>
+      <Version Value="2"/>
+    </PublishOptions>
+  </Package>
+</CONFIG>
