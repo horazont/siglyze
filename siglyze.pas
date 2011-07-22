@@ -7,9 +7,9 @@ unit siglyze;
 interface
 
 uses
-  DataTypeFFT, DataTypeSamples, DataTypeStatus, fftw, ProcessingOvermind, 
-  FFTProcessor, InputProcessor, MixProcessor, OutputProcessor, 
-  WindowFunctions, Sources, LazarusPackageIntf;
+  DataTypeFFT, DataTypeSamples, DataTypeStatus, ProcessingOvermind, 
+  FFTProcessor, InputProcessor, MixProcessor, OutputProcessor, SyncProcessor, 
+  Sources, WindowFunctions, LazarusPackageIntf;
 
 implementation
 

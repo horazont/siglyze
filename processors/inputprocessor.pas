@@ -91,7 +91,7 @@ begin
     if EndOfStream then
     begin
       DebugMsg('End of stream', [], Self);
-      Pause;
+      PostCommand(NODE_THREAD_COMMAND_PAUSE, True);
     end;
   end;
   Result := True;

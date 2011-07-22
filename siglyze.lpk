@@ -6,7 +6,7 @@
       <Version Value="10"/>
       <SearchPaths>
         <OtherUnitFiles Value="datatypes;fftw;overmind;processors;utils;sources"/>
-        <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)/"/>
+        <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
       </SearchPaths>
       <Other>
         <CompilerPath Value="$(CompPath)"/>
@@ -26,51 +26,58 @@
         <UnitName Value="DataTypeStatus"/>
       </Item3>
       <Item4>
-        <Filename Value="fftw/fftw.pas"/>
-        <UnitName Value="fftw"/>
-      </Item4>
-      <Item5>
         <Filename Value="overmind/processingovermind.pas"/>
         <UnitName Value="ProcessingOvermind"/>
-      </Item5>
-      <Item6>
+      </Item4>
+      <Item5>
         <Filename Value="processors/fftprocessor.pas"/>
         <UnitName Value="FFTProcessor"/>
-      </Item6>
-      <Item7>
+      </Item5>
+      <Item6>
         <Filename Value="processors/inputprocessor.pas"/>
         <UnitName Value="InputProcessor"/>
-      </Item7>
-      <Item8>
+      </Item6>
+      <Item7>
         <Filename Value="processors/mixprocessor.pas"/>
         <UnitName Value="MixProcessor"/>
-      </Item8>
-      <Item9>
+      </Item7>
+      <Item8>
         <Filename Value="processors/outputprocessor.pas"/>
         <UnitName Value="OutputProcessor"/>
+      </Item8>
+      <Item9>
+        <Filename Value="processors/syncprocessor.pas"/>
+        <UnitName Value="SyncProcessor"/>
       </Item9>
       <Item10>
-        <Filename Value="utils/windowfunctions.pas"/>
-        <UnitName Value="WindowFunctions"/>
-      </Item10>
-      <Item11>
         <Filename Value="sources/sources.pas"/>
         <UnitName Value="Sources"/>
+      </Item10>
+      <Item11>
+        <Filename Value="utils/windowfunctions.pas"/>
+        <UnitName Value="WindowFunctions"/>
       </Item11>
     </Files>
     <Type Value="RunAndDesignTime"/>
-    <RequiredPkgs Count="3">
+    <RequiredPkgs Count="5">
       <Item1>
-        <PackageName Value="gtfile"/>
+        <PackageName Value="gtnode"/>
         <MinVersion Minor="8" Valid="True"/>
       </Item1>
       <Item2>
-        <PackageName Value="gtcore"/>
-        <MinVersion Minor="8" Valid="True"/>
+        <PackageName Value="fftwpkg"/>
       </Item2>
       <Item3>
-        <PackageName Value="FCL"/>
+        <PackageName Value="gtfile"/>
+        <MinVersion Minor="8" Valid="True"/>
       </Item3>
+      <Item4>
+        <PackageName Value="gtcore"/>
+        <MinVersion Minor="8" Valid="True"/>
+      </Item4>
+      <Item5>
+        <PackageName Value="FCL"/>
+      </Item5>
     </RequiredPkgs>
     <UsageOptions>
       <UnitPath Value="$(PkgOutDir)"/>
