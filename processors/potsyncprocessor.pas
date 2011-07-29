@@ -294,6 +294,8 @@ begin
     FOutTypes[I] := TDataTypeSamples.Create;
     InTypes[I] := TDataTypeSamples;
   end;
+  SetupInPorts(InTypes);
+  SetupOutPorts(FOutTypes);
   inherited SetupIO;
 end;
 

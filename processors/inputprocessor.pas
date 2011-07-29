@@ -81,7 +81,7 @@ begin
   FStatusType.Init;
   FSampleType.Init;
   for I := 0 to High(FBuffer) do
-    FBuffer[I] := GetMem(FSamplesPerLoop);
+    FBuffer[I] := GetMem(FSamplesPerLoop * SizeOf(Double));
   inherited Init;
 end;
 
