@@ -9,7 +9,7 @@ interface
 uses
   DataTypeFFT, DataTypeSamples, DataTypeStatus, ProcessingOvermind, 
   FFTProcessor, InputProcessor, MixProcessor, OutputProcessor, SyncProcessor, 
-  Sources, WindowFunctions, LazarusPackageIntf;
+  Sources, WindowFunctions, ProcessingSubchannels, LazarusPackageIntf;
 
 implementation
 
