@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, fftw, WindowFunctions, GTNodes, ProcessingOvermind,
   DataTypeSamples, DataTypeFFT, GTMessages, ProcessingSubchannels,
-  GTStreamUtils;
+  GTStreamUtils, GTDebug;
 
 type
 
@@ -105,8 +105,7 @@ var
   Curr: Pcomplex_double;
   Tmp: Double;
 begin
-  if not TestRead(FInPorts[0], FFTInBuffer^, BufferSize) then
-    ProcessSubchannelAsMessages(FInPorts[0]);
+  CheckRead(FInPorts[0], FFTInBuffer^, BufferSize);
 
   FWindowFunction.Apply(FFTInBuffer, FrameSize);
 
@@ -123,6 +122,7 @@ end;
 
 procedure TFFTProcessor.DoPostFFTSize;
 begin
+  DebugMsg('Posting fft size', [], Self);
   FOutPorts[0].WriteSubchannel(MsgFFTSizeChanged(FFFTSize), SizeOf(TGTMessage));
 end;
 

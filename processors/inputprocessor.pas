@@ -106,7 +106,10 @@ begin
 
   FOutPorts[0].Write(Status, SizeOf(TStatusRecord));
   for I := 0 to High(FBuffer) do
-    FOutPorts[I+1].Write(FBuffer[I], FSamplesPerLoop * SizeOf(Double));
+  begin
+    FOutPorts[I+1].Write(FBuffer[I]^, FSamplesPerLoop * SizeOf(Double));
+    DebugMsg('Wrote %d bytes to 0x%16.16x', [FSamplesPerLoop * SizeOf(Double), ptrint(FOutPorts[I+1])], Self);
+  end;
 end;
 
 procedure TInputProcessor.SetupIO;

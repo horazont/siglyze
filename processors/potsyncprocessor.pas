@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, GTNodes, ProcessingOvermind, ProcessingSubchannels,
-  DataTypeSamples, DataTypeFFT, DataTypeStatus, GTMessages, GTDebug;
+  DataTypeSamples, DataTypeFFT, DataTypeStatus, GTMessages, GTDebug,
+  GTRingBuffer;
 
 type
 
@@ -124,6 +125,8 @@ begin
   try
     FSyncFrameSize := AValue;
     FSyncBufferSize := FSyncFrameSize * SizeOf(Double);
+    DebugMsg('Sync frame size set to: %d samples (%d bytes)', [FSyncFrameSize, FSyncBufferSize], Self);
+    DebugMsg('Input stream can store %d bytes', [FInPorts[0].Size], Self);
     if State = nsInitialized then
       ReallocSyncBuffers;
   finally
@@ -147,6 +150,7 @@ begin
         DebugMsg('FFT_SIZE_CHANGED received on non-fft port %d.', [AInPortIndex], Self);
         Exit;
       end;
+      DebugMsg('Received FFT_SIZE_CHANGED on port %d. New size is: %d.', [AInPortIndex, Msg^.Value], Self);
       FOutPorts[AInPortIndex].WriteSubchannel(Msg, MsgSize);
       FInFFTSizes[AInPortIndex] := Msg^.Value;
       // sync frame must not be smaller than this, as reallocation may kill our
@@ -179,13 +183,22 @@ function TPOTSyncProcessor.ReadToSyncBuffer(const ASource: TStream;
 var
   ReadCount, ActuallyRead: SizeUInt;
 begin
+  if ADest.FullAt = 0 then
+    Exit(False);
+  {if ASource is TGTRingBuffer then
+    TGTRingBuffer(ASource).Debug := True;}
   ReadCount := ADest.FullAt - ADest.Offset;
+//  DebugMsg('Attempt to read %d bytes from 0x%16.16x', [ReadCount, ptrint(ASource)], Self);
   ActuallyRead := ASource.Read((ADest.Data + ADest.Offset)^, ReadCount);
+//  if ActuallyRead > 0 then
+//    DebugMsg('Successfully read %d bytes', [ActuallyRead], Self);
   ADest.Offset += ActuallyRead;
   Result := ActuallyRead = ReadCount;
   ADest.IsFull := Result;
   if Result then
     ADest.Offset := 0;
+  {if ASource is TGTRingBuffer then
+    TGTRingBuffer(ASource).Debug := False;}
 end;
 
 procedure TPOTSyncProcessor.RecalculateSyncFrameSize;
@@ -227,6 +240,8 @@ var
   I: Integer;
 begin
   RecalculateSyncFrameSize;
+  SetLength(FInFFTSizes, FInputFFTCount);
+  FillDWord(FInFFTSizes[0], FInputFFTCount, 0);
   SetLength(FSyncBuffers, FInputFFTCount + FInputSamplesCount);
   for I := 0 to High(FSyncBuffers) do
   begin
@@ -238,8 +253,6 @@ begin
     FSyncBuffers[I].FullAt := FInFFTSizes[I] * SizeOf(Double);
   for I := FInputFFTCount to FInputFFTCount + (FInputSamplesCount - 1) do
     TDataTypeSamples(FOutTypes[I]).Channel := TDataTypeSamples(FInPorts[I].DataType).Channel;
-  SetLength(FInFFTSizes, FInputFFTCount);
-  FillDWord(FInFFTSizes[0], FInputFFTCount, 0);
   inherited Init;
 end;
 
@@ -261,14 +274,16 @@ begin
     for I := 0 to High(FSyncBuffers) do
       if not FSyncBuffers[I].IsFull then
       begin
+        DebugMsg('Input %d is not full yet, checking subchannel', [I], Self);
         HandleSubchannel(I);
       end;
   end
   else
   begin
+    DebugMsg('sync frame; Forwarding data', [], Self);
     for I := 0 to High(FSyncBuffers) do
     begin
-      FOutPorts[I].Write(FSyncBuffers[I].Data, FSyncBuffers[I].FullAt);
+      FOutPorts[I].Write(FSyncBuffers[I].Data^, FSyncBuffers[I].FullAt);
       FSyncBuffers[I].IsFull := False;
       FSyncBuffers[I].Offset := 0;
     end;
