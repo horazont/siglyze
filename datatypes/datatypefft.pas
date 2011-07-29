@@ -5,20 +5,20 @@ unit DataTypeFFT;
 interface
 
 uses
-  Classes, SysUtils, GTNodes, GTNodeDataTypeBlockMemory;
+  Classes, SysUtils, GTNodes;
 
 type
 
   { TDataTypeFFT }
 
-  TDataTypeFFT = class (TGTNodeDataTypeCustomBlockMemory)
+  TDataTypeFFT = class (TGTNodeDataType)
   public
     constructor Create;
   private
     FFFTSize: Cardinal;
     procedure SetFFTSize(const AValue: Cardinal);
   published
-    property FFTSize: Cardinal read FFFTSize write SetFFTSize;
+    property FFTSize: Cardinal read FFFTSize write FFFTSize;
   end;
 
 implementation
@@ -34,8 +34,6 @@ end;
 procedure TDataTypeFFT.SetFFTSize(const AValue: Cardinal);
 begin
   if FFFTSize = AValue then exit;
-  Size := AValue * SizeOf(Double);
-  WriteLn('fft size set to ', AValue, ' => size = ', Size);
   FFFTSize := AValue;
 end;
 
