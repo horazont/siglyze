@@ -12,7 +12,7 @@
         <CompilerPath Value="$(CompPath)"/>
       </Other>
     </CompilerOptions>
-    <Files Count="10">
+    <Files Count="11">
       <Item1>
         <Filename Value="datatypes/datatypefft.pas"/>
         <UnitName Value="DataTypeFFT"/>
@@ -53,6 +53,10 @@
         <Filename Value="overmind/processingsubchannels.pas"/>
         <UnitName Value="ProcessingSubchannels"/>
       </Item10>
+      <Item11>
+        <Filename Value="processors/potsyncprocessor.pas"/>
+        <UnitName Value="potsyncprocessor"/>
+      </Item11>
     </Files>
     <Type Value="RunAndDesignTime"/>
     <RequiredPkgs Count="5">

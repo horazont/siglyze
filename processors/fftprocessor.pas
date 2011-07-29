@@ -67,7 +67,6 @@ begin
   FLoopLock.Acquire;
   try
     FFFTSize := AValue;
-    FFFTType.FFTSize := FFFTSize;
     if State = nsInitialized then
       DoPostFFTSize;
   finally

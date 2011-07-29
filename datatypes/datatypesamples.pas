@@ -16,10 +16,8 @@ type
     constructor Create;
   private
     FChannel: TProcessingChannel;
-    FSamplesPerBlock: Cardinal;
   published
     property Channel: TProcessingChannel read FChannel write FChannel;
-    property SamplesPerBlock: Cardinal read FSamplesPerBlock write FSamplesPerBlock;
   end;
 
 implementation
@@ -29,7 +27,6 @@ implementation
 constructor TDataTypeSamples.Create;
 begin
   inherited Create;
-  FSamplesPerBlock := 0;
   FChannel := pcMixed;
 end;
 
