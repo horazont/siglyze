@@ -8,8 +8,8 @@ interface
 
 uses
   DataTypeFFT, DataTypeSamples, DataTypeStatus, ProcessingOvermind, 
-  FFTProcessor, InputProcessor, MixProcessor, OutputProcessor, SyncProcessor, 
-  Sources, WindowFunctions, ProcessingSubchannels, LazarusPackageIntf;
+  FFTProcessor, InputProcessor, MixProcessor, SyncProcessor, Sources, 
+  WindowFunctions, ProcessingSubchannels, LazarusPackageIntf;
 
 implementation
 
