@@ -42,20 +42,20 @@
         <UnitName Value="MixProcessor"/>
       </Item7>
       <Item8>
-        <Filename Value="processors/outputprocessor.pas"/>
-        <UnitName Value="OutputProcessor"/>
-      </Item8>
-      <Item9>
-        <Filename Value="processors/syncprocessor.pas"/>
-        <UnitName Value="SyncProcessor"/>
-      </Item9>
-      <Item10>
         <Filename Value="sources/sources.pas"/>
         <UnitName Value="Sources"/>
-      </Item10>
-      <Item11>
+      </Item8>
+      <Item9>
         <Filename Value="utils/windowfunctions.pas"/>
         <UnitName Value="WindowFunctions"/>
+      </Item9>
+      <Item10>
+        <Filename Value="overmind/processingsubchannels.pas"/>
+        <UnitName Value="ProcessingSubchannels"/>
+      </Item10>
+      <Item11>
+        <Filename Value="processors/potsyncprocessor.pas"/>
+        <UnitName Value="potsyncprocessor"/>
       </Item11>
     </Files>
     <Type Value="RunAndDesignTime"/>

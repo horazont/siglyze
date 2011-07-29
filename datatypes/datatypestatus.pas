@@ -5,7 +5,7 @@ unit DataTypeStatus;
 interface
 
 uses
-  Classes, SysUtils, GTNodeDataTypeBlockMemory, GTNodes;
+  Classes, SysUtils, GTNodes;
 
 type
   TSourceType = (stFile, stStream);
@@ -32,20 +32,10 @@ type
 
   { TDataTypeStatus }
 
-  TDataTypeStatus = class (TGTNodeDataTypeCustomBlockMemory)
-  public
-    constructor Create;
+  TDataTypeStatus = class (TGTNodeDataType)
   end;
 
 implementation
-
-{ TDataTypeStatus }
-
-constructor TDataTypeStatus.Create;
-begin
-  inherited Create;
-  Size := SizeOf(TStatusRecord);
-end;
 
 end.
 

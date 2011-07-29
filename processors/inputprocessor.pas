@@ -20,7 +20,7 @@ type
   private
     FBuffer: TMultiChannelBuffer;
     FChannelCount: Cardinal;
-    FSamplesPerBlock: Cardinal;
+    FSamplesPerLoop: Cardinal;
     FSourceStream: TslSourceStream;
 
     FSampleType: TDataTypeSamples;
@@ -28,11 +28,10 @@ type
   protected
     procedure Burn; override;
     procedure Init; override;
-    function ProcessDataSet(const AInputData: TGTNodeDataSet;
-       const AOutputData: TGTNodeDataSet): Boolean; override;
+    procedure Loop; override;
     procedure SetupIO; override;
   public
-    property SamplesPerBlock: Cardinal read FSamplesPerBlock write FSamplesPerBlock;
+    property SamplesPerBlock: Cardinal read FSamplesPerLoop write FSamplesPerLoop;
     property SourceStream: TslSourceStream read FSourceStream write FSourceStream;
   end;
 
@@ -47,6 +46,7 @@ begin
   FSourceStream := nil;
   FStatusType := TDataTypeStatus.Create;
   FSampleType := TDataTypeSamples.Create;
+  FSamplesPerLoop := 1024;
 end;
 
 destructor TInputProcessor.Destroy;
@@ -57,37 +57,44 @@ begin
 end;
 
 procedure TInputProcessor.Burn;
+var
+  I: Integer;
 begin
+  for I := 0 to High(FBuffer) do
+  begin
+    FreeMem(FBuffer[I]);
+    FBuffer[I] := nil;
+  end;
   inherited Burn;
   FSampleType.Burn;
   FStatusType.Burn;
 end;
 
 procedure TInputProcessor.Init;
+var
+  I: Integer;
 begin
+  if FSamplesPerLoop < 1024 then
+    FSamplesPerLoop := 1024;
   Assert(FSourceStream <> nil);
   SetLength(FBuffer, FSourceStream.ChannelCount);
   FStatusType.Init;
   FSampleType.Init;
+  for I := 0 to High(FBuffer) do
+    FBuffer[I] := GetMem(FSamplesPerLoop * SizeOf(Double));
   inherited Init;
 end;
 
-function TInputProcessor.ProcessDataSet(const AInputData: TGTNodeDataSet;
-  const AOutputData: TGTNodeDataSet): Boolean;
+procedure TInputProcessor.Loop;
 var
   I: Cardinal;
+  Status: TStatusRecord;
 begin
-  AOutputData[0] := FStatusType.GetItem;
-  for I := 1 to FChannelCount do
-  begin
-    AOutputData[I] := FSampleType.GetItem;
-    FBuffer[I-1] := PDouble(AOutputData[I]);
-  end;
-  DebugMsg('Reading %d samples', [FSamplesPerBlock], Self);
-  FSourceStream.ReadSamples(FBuffer, FSamplesPerBlock);
+  DebugMsg('Reading %d samples', [FSamplesPerLoop], Self);
+  FSourceStream.ReadSamples(FBuffer, FSamplesPerLoop);
   DebugMsg('Got sample block', [], Self);
-  //PDouble(FBuffer[0])[10] := Random;
-  with PStatusRecord(AOutputData[0])^ do
+
+  with Status do
   begin
     EndOfStream := FSourceStream.EndOfStream;
     if EndOfStream then
@@ -96,7 +103,13 @@ begin
       PostCommand(NODE_THREAD_COMMAND_PAUSE, True);
     end;
   end;
-  Result := True;
+
+  FOutPorts[0].Write(Status, SizeOf(TStatusRecord));
+  for I := 0 to High(FBuffer) do
+  begin
+    FOutPorts[I+1].Write(FBuffer[I]^, FSamplesPerLoop * SizeOf(Double));
+    DebugMsg('Wrote %d bytes to 0x%16.16x', [FSamplesPerLoop * SizeOf(Double), ptrint(FOutPorts[I+1])], Self);
+  end;
 end;
 
 procedure TInputProcessor.SetupIO;
@@ -106,7 +119,6 @@ var
 begin
   FChannelCount := FSourceStream.ChannelCount;
   SetLength(Ports, FChannelCount+1);
-  FSampleType.SamplesPerBlock := FSamplesPerBlock;
   Ports[0] := FStatusType;
   for I := 1 to High(Ports) do
     Ports[I] := FSampleType;
