@@ -12,7 +12,7 @@
         <CompilerPath Value="$(CompPath)"/>
       </Other>
     </CompilerOptions>
-    <Files Count="11">
+    <Files Count="10">
       <Item1>
         <Filename Value="datatypes/datatypefft.pas"/>
         <UnitName Value="DataTypeFFT"/>
@@ -42,21 +42,17 @@
         <UnitName Value="MixProcessor"/>
       </Item7>
       <Item8>
-        <Filename Value="processors/syncprocessor.pas"/>
-        <UnitName Value="SyncProcessor"/>
-      </Item8>
-      <Item9>
         <Filename Value="sources/sources.pas"/>
         <UnitName Value="Sources"/>
-      </Item9>
-      <Item10>
+      </Item8>
+      <Item9>
         <Filename Value="utils/windowfunctions.pas"/>
         <UnitName Value="WindowFunctions"/>
-      </Item10>
-      <Item11>
+      </Item9>
+      <Item10>
         <Filename Value="overmind/processingsubchannels.pas"/>
         <UnitName Value="ProcessingSubchannels"/>
-      </Item11>
+      </Item10>
     </Files>
     <Type Value="RunAndDesignTime"/>
     <RequiredPkgs Count="5">
