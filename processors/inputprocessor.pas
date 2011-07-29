@@ -83,7 +83,9 @@ begin
     AOutputData[I] := FSampleType.GetItem;
     FBuffer[I-1] := PDouble(AOutputData[I]);
   end;
+  DebugMsg('Reading %d samples', [FSamplesPerBlock], Self);
   FSourceStream.ReadSamples(FBuffer, FSamplesPerBlock);
+  DebugMsg('Got sample block', [], Self);
   //PDouble(FBuffer[0])[10] := Random;
   with PStatusRecord(AOutputData[0])^ do
   begin

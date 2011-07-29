@@ -5,7 +5,7 @@ unit SyncProcessor;
 interface
 
 uses
-  Classes, SysUtils, GTNodes, DataTypeStatus, ProcessingOvermind;
+  Classes, SysUtils, GTNodes, DataTypeStatus, ProcessingOvermind, GTDebug;
 
 type
 
@@ -63,10 +63,12 @@ function TSyncProcessor.ProcessDataSet(const AInputData: TGTNodeDataSet;
 var
   I: Integer;
 begin
+  Result := True;
   AOutputData[0] := FStatusType.GetItem;
   Move(AInputData[0]^, AOutputData[0]^, FStatusType.GetSize);
   for I := 0 to FInPortCount - 1 do
     FInPorts[I].DataType.FreeItem(AInputData[I]);
+  DebugMsg('Forwarding status (%16.16x)', [ptrint(AOutputData[0])], Self);
 end;
 
 procedure TSyncProcessor.SetupIO;

@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, ProcessingOvermind, DataTypeFFT, DataTypeSamples,
-  DataTypeStatus, GTNodes, GTDebug;
+  DataTypeStatus, GTNodes, GTDebug, GTRingBuffer;
 
 type
   TDataElement = (deStatus, dePCM, deFFT);
@@ -81,6 +81,7 @@ var
   SampleCount: Cardinal;
   FFTSize: Cardinal;
 begin
+  DebugMsg('Received data', [], Self);
   Header.Status := PStatusRecord(AInputData[0])^;
   Header.PCMChannelCount := FPCMChannelCount;
   Header.FFTCount := FFFTCount;
@@ -91,6 +92,7 @@ begin
   for I := 0 to FPCMChannelCount - 1 do
   begin
     SampleCount := TDataTypeSamples(FInPorts[J].DataType).SamplesPerBlock;
+    DebugMsg('Channel %d: Writing samples (%d)', [I, SampleCount], Self);
     FOutStream.Write(SampleCount, SizeOf(Cardinal));
     FOutStream.Write(AInputData[J]^, SizeOf(Double) * SampleCount);
     FInPorts[J].DataType.FreeItem(AInputData[J]);
@@ -110,6 +112,8 @@ begin
     PostCommand(NODE_THREAD_COMMAND_PAUSE, True);
     Exit(False);
   end;
+  if FOutStream is TGTRingBuffer then
+    DebugMsg('%d bytes available on out stream', [TGTRingBuffer(FOutStream).Available], Self);
   Result := True;
 end;
 
