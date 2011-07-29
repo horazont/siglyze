@@ -21,18 +21,25 @@ type
     FActualChannelCount: Cardinal;
     FInputChannelCount: Cardinal;
     FOutputChannelType: TProcessingChannel;
-    FSampleCount: Cardinal;
+    FSamplesPerLoop: Cardinal;
+    FBufferSize: SizeUInt;
+
+    FInputBuffer: PDouble;
+    FOutputBuffer: PDouble;
 
     FSampleType: TDataTypeSamples;
+    procedure SetInputChannelCount(const AValue: Cardinal);
+    procedure SetOutputChannelType(const AValue: TProcessingChannel);
+    procedure SetSamplesPerLoop(const AValue: Cardinal);
   protected
+    procedure Burn; override;
     procedure Init; override;
-    procedure ParametrizeOutput(Sender: TObject);
-    function ProcessDataSet(const AInputData: TGTNodeDataSet;
-       const AOutputData: TGTNodeDataSet): Boolean; override;
+    procedure Loop; override;
     procedure SetupIO; override;
   public
-    property InputChannelCount: Cardinal read FInputChannelCount write FInputChannelCount;
-    property OutputChannelType: TProcessingChannel read FOutputChannelType write FOutputChannelType;
+    property InputChannelCount: Cardinal read FInputChannelCount write SetInputChannelCount;
+    property OutputChannelType: TProcessingChannel read FOutputChannelType write SetOutputChannelType;
+    property SamplesPerLoop: Cardinal read FSamplesPerLoop write SetSamplesPerLoop;
   end;
 
 implementation
@@ -46,6 +53,7 @@ begin
   FInputChannelCount := 2;
   FOutputChannelType := pcMixed;
   FSampleType := TDataTypeSamples.Create;
+  SamplesPerLoop := 1024;
 end;
 
 destructor TMixProcessor.Destroy;
@@ -54,56 +62,83 @@ begin
   inherited Destroy;
 end;
 
+procedure TMixProcessor.SetSamplesPerLoop(const AValue: Cardinal);
+begin
+  if FSamplesPerLoop = AValue then exit;
+  FLoopLock.Enter;
+  try
+    FSamplesPerLoop := AValue;
+    FBufferSize := FSamplesPerLoop * SizeOf(Double);
+    if State >= nsInitialized then
+    begin
+      ReallocMem(FInputBuffer, FBufferSize);
+      ReAllocMem(FOutputBuffer, FBufferSize);
+    end;
+  finally
+    FLoopLock.Release;
+  end;
+end;
+
+procedure TMixProcessor.SetInputChannelCount(const AValue: Cardinal);
+begin
+  ForceMaxState(nsBurned);
+  if FInputChannelCount = AValue then exit;
+  FInputChannelCount := AValue;
+end;
+
+procedure TMixProcessor.SetOutputChannelType(const AValue: TProcessingChannel);
+begin
+  ForceMaxState(nsIOSetup);
+  if FOutputChannelType = AValue then exit;
+  FOutputChannelType := AValue;
+  FSampleType.Channel := FOutputChannelType;
+end;
+
+procedure TMixProcessor.Burn;
+begin
+  FreeMem(FInputBuffer);
+  FreeMem(FOutputBuffer);
+  inherited Burn;
+end;
+
 procedure TMixProcessor.Init;
 begin
 //  FOutPorts[0].DataType.Parametrize;
+  if FSamplesPerLoop < 1024 then
+    SamplesPerLoop := 1024;
   FSampleType.Init;
+  FInputBuffer := GetMem(FBufferSize);
+  FOutputBuffer := GetMem(FBufferSize);
   inherited Init;
 end;
 
-procedure TMixProcessor.ParametrizeOutput(Sender: TObject);
-var
-  I: Integer;
-  SampleCount: Cardinal;
-begin
-  FActualChannelCount := 0;
-  SampleCount := 0;
-  for I := 0 to FInputChannelCount - 1 do
-    if FInPorts[I].DataType <> nil then
-    begin
-      if SampleCount = 0 then
-        SampleCount := TDataTypeSamples(FInPorts[I].DataType).SamplesPerBlock
-      else if SampleCount <> TDataTypeSamples(FInPorts[I].DataType).SamplesPerBlock then
-        raise EMixerError.Create('Sample count per block is not equal for all sources.');
-      Inc(FActualChannelCount);
-    end;
-  FSampleType.SamplesPerBlock := SampleCount;
-  FSampleCount := SampleCount;
-end;
-
-function TMixProcessor.ProcessDataSet(const AInputData: TGTNodeDataSet;
-  const AOutputData: TGTNodeDataSet): Boolean;
+procedure TMixProcessor.Loop;
 var
   I, J: Integer;
   InputPtr, OutputPtr: PDouble;
+  Channels: Double;
+  ReadBytes: SizeUInt;
 begin
-  AOutputData[0] := FOutPorts[0].DataType.GetItem;
+  Channels := FInputChannelCount;
+  FillQWord(FOutputBuffer^, FSamplesPerLoop, QWord(Double(0.0)));
   for I := 0 to FInputChannelCount - 1 do
   begin
-    OutputPtr := PDouble(AOutputData[0]);
-    if FInPorts[I].DataType <> nil then
+    ReadBytes := FInPorts[I].Read(FInputBuffer^, FBufferSize);
+    if ReadBytes < FBufferSize then
     begin
-      InputPtr := PDouble(AInputData[I]);
-      for J := 1 to FSampleCount do
-      begin
-        OutputPtr^ += InputPtr^ / FActualChannelCount;
-        Inc(OutputPtr);
-        Inc(InputPtr);
-      end;
-      FInPorts[I].DataType.FreeItem(AInputData[I]);
+      ProcessSubchannelAsMessages(FInPorts[I]);
+      FillByte((FInputBuffer + ReadBytes)^, FBufferSize - ReadBytes, 0);
+    end;
+    OutputPtr := FOutputBuffer;
+    InputPtr := FInputBuffer;
+    for J := 1 to FSamplesPerLoop do
+    begin
+      OutputPtr^ += InputPtr^ / Channels;
+      Inc(OutputPtr);
+      Inc(InputPtr);
     end;
   end;
-  Result := True;
+  FOutPorts[0].Write(FOutputBuffer^, FBufferSize);
 end;
 
 procedure TMixProcessor.SetupIO;
@@ -112,7 +147,6 @@ var
   I: Integer;
 begin
   FSampleType.Channel := FOutputChannelType;
-  FSampleType.OnParametrize := @ParametrizeOutput;
   SetupOutPorts([FSampleType]);
   SetLength(Ports, FInputChannelCount);
   for I := 0 to FInputChannelCount - 1 do
