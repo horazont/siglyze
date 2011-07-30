@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, GTNodes, ProcessingOvermind, ProcessingSubchannels,
   DataTypeSamples, DataTypeFFT, DataTypeStatus, GTMessages, GTDebug,
-  GTRingBuffer;
+  GTAsyncStream;
 
 type
 
@@ -143,7 +143,7 @@ begin
   if not FInPorts[AInPortIndex].ReadSubchannel(Msg, MsgSize) then
     Exit;
   case Msg^.Msg of
-    PSC_FFT_SIZE_CHANGED:
+    PSC_FFT_SIZE:
     begin
       if not (FOutTypes[AInPortIndex] is TDataTypeFFT) then
       begin
@@ -185,8 +185,8 @@ var
 begin
   if ADest.FullAt = 0 then
     Exit(False);
-  {if ASource is TGTRingBuffer then
-    TGTRingBuffer(ASource).Debug := True;}
+  {if ASource is TGTAsyncStream then
+    TGTAsyncStream(ASource).Debug := True;}
   ReadCount := ADest.FullAt - ADest.Offset;
 //  DebugMsg('Attempt to read %d bytes from 0x%16.16x', [ReadCount, ptrint(ASource)], Self);
   ActuallyRead := ASource.Read((ADest.Data + ADest.Offset)^, ReadCount);
@@ -197,8 +197,8 @@ begin
   ADest.IsFull := Result;
   if Result then
     ADest.Offset := 0;
-  {if ASource is TGTRingBuffer then
-    TGTRingBuffer(ASource).Debug := False;}
+  {if ASource is TGTAsyncStream then
+    TGTAsyncStream(ASource).Debug := False;}
 end;
 
 procedure TPOTSyncProcessor.RecalculateSyncFrameSize;
